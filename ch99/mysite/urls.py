@@ -14,15 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from django.views.generic.base import RedirectView
-from django.contrib.staticfiles.storage import staticfiles_storage
-
-from bookmark.views import BookmarkLV, BookmarkDV
+from django.urls import path, include
 
 urlpatterns = [
-    path( "favicon.ico", RedirectView.as_view(url=staticfiles_storage.url("favicon.ico")),   ),
+    
     path('admin/', admin.site.urls),
-    path('bookmark/', BookmarkLV.as_view(), name='index'),
-    path('bookmark/<int:pk>/',BookmarkDV.as_view(), name='detail'),
+    path('bookmark/', include('bookmark.urls')),
+    path('blog/', include('blog.urls')),
 ]
