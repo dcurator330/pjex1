@@ -31,12 +31,17 @@ ALLOWED_HOSTS = ['192.168.35.210','localhost','127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'taggit.apps.TaggitAppConfig',
+    'taggit_templatetags2',
+
     'bookmark.apps.BookmarkConfig',
     'blog.apps.BlogConfig',
 ]
@@ -50,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'mysite.urls'
 
@@ -121,8 +127,11 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = [BASE_DIR / 'staticfiles']
-STATIC_DIRS = [BASE_DIR / 'static']
+
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
+TAGGIT_CASE_INSENSITIVE = True # 태그의 대소문자를 구분하지 않는다는 항목
+TAGGIT_LIMIT = 50 #  태그 클라우드에 나타나는 태그의 최대 개수
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
